@@ -9,10 +9,13 @@
     "react-dom": "^16.2.0",
     "react-scripts": "1.1.1"
   },
+  "engines": {
+    "node": "9.4.0",
+    "npm": "5.7.1"
+  },
   "scripts": {
-    "start": "react-scripts start",
+    "start": "node server.js",
     "build": "react-scripts build",
-    "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject"
   }
 }
