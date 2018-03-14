@@ -8,7 +8,7 @@ const User = mongoose.model('users');
 
 //to seralize a cookie for the user
 passport.serializeUser((user, done) => {
-  done(null, user.id); //user.id from mongodb database assigned by mongo
+  done(null, user._id); //user.id from mongodb database assigned by mongo
 });
 //deserialize the cookie
 passport.deserializeUser((id, done) => {
