@@ -15,4 +15,9 @@ module.exports = app => {
 
   //once user signs in we need to get authentication token created by google
   app.get('/auth/google/callback', passport.authenticate('google'));
+
+  app.get('/api/currentUser', (req, res) => {
+    res.send(req.user);
+    console.log(req.user);
+  });
 };
