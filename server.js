@@ -1,4 +1,4 @@
-'use strict';
+
 const express = require('express');
 const app = express();
 require('./models/user');
@@ -22,6 +22,14 @@ app.use(passport.session());
 authRoutes(app);
 
 mongoose.connect(keys.mongoURI);
+
+if (process.env.NODE_ENV === 'production') {
+  app.use(express.static('client/build'));
+
+  app.get('*', (req, res) => {
+    res.sendFile(path.resolve(__dirname, 'client', 'build', 'index.html'));
+  });
+}
 
 // app.use(passportConfig); //authentication strategy
 
