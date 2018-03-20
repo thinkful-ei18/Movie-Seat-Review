@@ -12,80 +12,109 @@ const validate = values => {
   return errors;
 };
 
-const ReviewForm = () => {
-  return (
-    <form>
-      <div>
-        <label>Location</label> <br />
-        <Field name="location" component="input" type="text" />
-      </div>
-      <div>
-        <label>Summary</label> <br />
-        <Field name="summary" component="textarea" />
-      </div>
-      <div>
-        <label>Overall Rating</label>
-        <br />
+export class ReviewForm extends React.Component {
+  onSubmit(values) {
+    console.log(values);
+    return fetch('http://localhost:8080/api/reviews', {
+      method: 'POST',
+      body: JSON.stringify(values),
+      headers: {
+        'Content-Type': 'application/json',
+        'Access-Control-Allow-Origin': 'http://localhost:8080',
+      },
+    }).then(res => {
+      if (!res.ok) {
+        if (
+          res.headers.has('content-type') &&
+          res.headers.get('content-type').startsWith('application/json')
+        ) {
+          // It's a nice JSON error returned by us, so decode it
+          return res.json().then(err => Promise.reject(err));
+        }
+        // It's a less informative error returned by express
+        return Promise.reject({
+          code: res.status,
+          message: res.statusText,
+        });
+      }
+      return;
+    });
+  }
+  render() {
+    return (
+      <form onSubmit={this.props.handleSubmit(values => this.onSubmit(values))}>
         <div>
-          <Field name="overallRating" component="select">
-            <option />
-            <option value="1">1 Star</option>
-            <option value="2">2 Star</option>
-            <option value="3">3 Star</option>
-            <option value="4">4 Star</option>
-            <option value="5">5 Star</option>
-          </Field>
+          <label>Location</label> <br />
+          <Field name="location" component="input" type="text" />
         </div>
-      </div>
-      <div>
-        <label>Screen Rating</label>
-        <br />
         <div>
-          <Field name="screenRating" component="select">
-            <option />
-            <option value="1">1 Star</option>
-            <option value="2">2 Star</option>
-            <option value="3">3 Star</option>
-            <option value="4">4 Star</option>
-            <option value="5">5 Star</option>
-          </Field>
+          <label>Summary</label> <br />
+          <Field name="summary" component="textarea" />
         </div>
-      </div>
-      <div>
-        <label>Legroom Rating</label>
-        <br />
         <div>
-          <Field name="legroomRating" component="select">
-            <option />
-            <option value="1">1 Star</option>
-            <option value="2">2 Star</option>
-            <option value="3">3 Star</option>
-            <option value="4">4 Star</option>
-            <option value="5">5 Star</option>
-          </Field>
+          <label>Overall Rating</label>
+          <br />
+          <div>
+            <Field name="overallRating" component="select">
+              <option />
+              <option value="1">1 Star</option>
+              <option value="2">2 Star</option>
+              <option value="3">3 Star</option>
+              <option value="4">4 Star</option>
+              <option value="5">5 Star</option>
+            </Field>
+          </div>
         </div>
-      </div>
-      <div>
-        <label>Comfort Rating</label>
-        <br />
         <div>
-          <Field name="comfortRating" component="select">
-            <option />
-            <option value="1">1 Star</option>
-            <option value="2">2 Star</option>
-            <option value="3">3 Star</option>
-            <option value="4">4 Star</option>
-            <option value="5">5 Star</option>
-          </Field>
+          <label>Screen Rating</label>
+          <br />
+          <div>
+            <Field name="screenRating" component="select">
+              <option />
+              <option value="1">1 Star</option>
+              <option value="2">2 Star</option>
+              <option value="3">3 Star</option>
+              <option value="4">4 Star</option>
+              <option value="5">5 Star</option>
+            </Field>
+          </div>
         </div>
-      </div>
-      <div>
-        <br />
-        <button type="submit">Submit</button>
-      </div>
-    </form>
-  );
-};
+        <div>
+          <label>Legroom Rating</label>
+          <br />
+          <div>
+            <Field name="legroomRating" component="select">
+              <option />
+              <option value="1">1 Star</option>
+              <option value="2">2 Star</option>
+              <option value="3">3 Star</option>
+              <option value="4">4 Star</option>
+              <option value="5">5 Star</option>
+            </Field>
+          </div>
+        </div>
+        <div>
+          <label>Comfort Rating</label>
+          <br />
+          <div>
+            <Field name="comfortRating" component="select">
+              <option />
+              <option value="1">1 Star</option>
+              <option value="2">2 Star</option>
+              <option value="3">3 Star</option>
+              <option value="4">4 Star</option>
+              <option value="5">5 Star</option>
+            </Field>
+          </div>
+        </div>
+        <div>
+          <br />
+          <button type="submit">Submit</button>
+        </div>
+      </form>
+    );
+  }
+}
 
 export default reduxForm({
   form: 'review',

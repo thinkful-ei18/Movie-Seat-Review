@@ -1,5 +1,6 @@
 const express = require('express');
 const app = express();
+const cors = require('cors');
 require('./services/passport');
 const User = require('./models/user');
 
@@ -12,6 +13,7 @@ const TheatreReview = require('./models/reviews');
 
 const keys = require('./config/keys');
 
+app.use(cors());
 app.use(
   cookieSession({
     maxAge: 30 * 24 * 60 * 60 * 1000,

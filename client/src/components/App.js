@@ -25,8 +25,9 @@ class App extends React.Component {
             <Route exact={true} path="/" component={Home} />
             <Route
               path="/reviews"
-              onSubmit={fields => this.onSubmit(fields)}
               component={ReviewForm}
+              onSubmit={this.onSubmit()}
+              å
             />
             <Route path="/reviews" component={Reviews} />
           </div>
