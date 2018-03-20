@@ -1,12 +1,13 @@
-'use strict';
 const mongoose = require('mongoose');
-
-const trSchema = new mongoose.Schema({
+const { Schema } = mongoose;
+const trSchema = new Schema({
   overallRating: { type: Number, min: 1, max: 5 },
   comfortRating: { type: Number, min: 1, max: 5 },
   legroomRating: { type: Number, min: 1, max: 5 },
   screenRating: { type: Number, min: 1, max: 5 },
   summary: { type: String },
+  _user: { type: Schema.Types.ObjectId, ref: 'User' },
+  reviewDate: Date,
 });
 
 trSchema.methods.serialize = function() {

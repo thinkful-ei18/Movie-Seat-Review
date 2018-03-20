@@ -1,13 +1,14 @@
-
 const express = require('express');
 const app = express();
-require('./models/user');
 require('./services/passport');
+const User = require('./models/user');
 
 const authRoutes = require('./routes/authRoutes');
+const reviewRoutes = require('./routes/reviewRoutes');
 const mongoose = require('mongoose');
 const cookieSession = require('cookie-session');
 const passport = require('passport');
+const TheatreReview = require('./models/reviews');
 
 const keys = require('./config/keys');
 
@@ -20,6 +21,7 @@ app.use(
 app.use(passport.initialize());
 app.use(passport.session());
 authRoutes(app);
+reviewRoutes(app);
 
 mongoose.connect(keys.mongoURI);
 

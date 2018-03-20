@@ -4,23 +4,30 @@ import { connect } from 'react-redux';
 import * as actions from '../actions';
 
 import Header from './Header';
-import Rating from './Rating';
 import Home from './Home';
-
-const Reviews = () => <h2>Reviews</h2>;
+import ReviewForm from './reviews/reviewSubmission';
+import Reviews from './Reviews';
 
 class App extends React.Component {
   componentDidMount() {
     this.props.fetchUser();
   }
+
+  onSubmit = fields => {
+    console.log(fields);
+  };
   render() {
     return (
       <div className="container">
         <BrowserRouter>
           <div>
             <Header />
-            <Route path="/" component={Rating} />
             <Route exact={true} path="/" component={Home} />
+            <Route
+              path="/reviews"
+              onSubmit={fields => this.onSubmit(fields)}
+              component={ReviewForm}
+            />
             <Route path="/reviews" component={Reviews} />
           </div>
         </BrowserRouter>
