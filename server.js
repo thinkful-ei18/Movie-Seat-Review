@@ -2,27 +2,35 @@ const express = require('express');
 const app = express();
 const cors = require('cors');
 require('./services/passport');
-const User = require('./models/user');
+const bodyParser = require('body-parser');
 
 const authRoutes = require('./routes/authRoutes');
 const reviewRoutes = require('./routes/reviewRoutes');
 const mongoose = require('mongoose');
-const cookieSession = require('cookie-session');
-const passport = require('passport');
-const TheatreReview = require('./models/reviews');
+// const cookieSession = require('cookie-session');
+// const passport = require('passport');
+const morgan = require('morgan');
 
 const keys = require('./config/keys');
 
-app.use(cors());
-app.use(
-  cookieSession({
-    maxAge: 30 * 24 * 60 * 60 * 1000,
-    keys: [keys.cookieKey],
-  })
-);
-app.use(passport.initialize());
-app.use(passport.session());
-authRoutes(app);
+app.use(morgan('dev'));
+app.use(cors({ origin: '*' }));
+app.use(bodyParser.json());
+// app.use(
+//   cookieSession({
+//     maxAge: 30 * 24 * 60 * 60 * 1000,
+//     keys: [keys.cookieKey],
+//   })
+// );
+//app.use(passport.initialize());
+//app.use(passport.session());
+app.use(function(req, res, next) {
+  res.header('Access-Control-Allow-Origin', '*');
+  res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE');
+  res.header('Access-Control-Allow-Headers', 'Content-Type');
+  next();
+});
+// authRoutes(app);
 reviewRoutes(app);
 
 mongoose.connect(keys.mongoURI);

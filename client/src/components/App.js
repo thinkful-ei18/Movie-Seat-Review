@@ -10,7 +10,7 @@ import Reviews from './Reviews';
 
 class App extends React.Component {
   componentDidMount() {
-    this.props.fetchUser();
+    // this.props.fetchUser();
   }
 
   onSubmit = fields => {

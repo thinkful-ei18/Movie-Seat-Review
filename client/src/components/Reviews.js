@@ -8,7 +8,7 @@ class Reviews extends Component {
     };
   }
   componentWillMount() {
-    fetch('/api/reviews').then();
+    fetch('/api/reviews');
   }
   render() {
     const reviewItems = this.state.reviews.map(review => (

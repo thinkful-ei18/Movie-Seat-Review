@@ -15,12 +15,11 @@ const validate = values => {
 export class ReviewForm extends React.Component {
   onSubmit(values) {
     console.log(values);
-    return fetch('http://localhost:8080/api/reviews', {
+    return fetch('/api/reviews', {
       method: 'POST',
       body: JSON.stringify(values),
       headers: {
         'Content-Type': 'application/json',
-        'Access-Control-Allow-Origin': 'http://localhost:8080',
       },
     }).then(res => {
       if (!res.ok) {
@@ -28,10 +27,8 @@ export class ReviewForm extends React.Component {
           res.headers.has('content-type') &&
           res.headers.get('content-type').startsWith('application/json')
         ) {
-          // It's a nice JSON error returned by us, so decode it
           return res.json().then(err => Promise.reject(err));
         }
-        // It's a less informative error returned by express
         return Promise.reject({
           code: res.status,
           message: res.statusText,

@@ -6,7 +6,6 @@ const trSchema = new Schema({
   legroomRating: { type: Number, min: 1, max: 5 },
   screenRating: { type: Number, min: 1, max: 5 },
   summary: { type: String },
-  _user: { type: Schema.Types.ObjectId, ref: 'User' },
   reviewDate: Date,
 });
 
