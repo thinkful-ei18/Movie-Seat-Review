@@ -8,17 +8,18 @@ class Reviews extends Component {
     };
   }
   componentWillMount() {
-    fetch('/api/reviews');
+    fetch('/api/reviews')
+      .then(results => results.json())
+      .then(data => {
+        let reviews = data.results.map(review => {
+          return <div key={review.id}>{review}</div>;
+        });
+        this.setState({ reviews: reviews });
+      });
   }
+
   render() {
-    const reviewItems = this.state.reviews.map(review => (
-      <div key={review.id} />
-    ));
-    return (
-      <div>
-        <h1>Reviews</h1>
-      </div>
-    );
+    return <div>{this.state.reviews}</div>;
   }
 }
 

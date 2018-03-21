@@ -5,6 +5,7 @@ const mongoose = require('mongoose');
 const User = require('../models/user');
 const Review = require('../models/reviews');
 module.exports = app => {
+  //review post request
   app.post('/api/reviews', (req, res, next) => {
     console.log('Endpoint hit');
     const {
@@ -38,5 +39,15 @@ module.exports = app => {
         console.log('I just got here');
         next(err);
       });
+    next();
+  });
+
+  //get all reviews
+  app.get('/api/reviews', (req, res, next) => {
+    Review.find()
+      .then(results => {
+        res.json(results.map(result => result.serialize()));
+      })
+      .catch(next);
   });
 };
