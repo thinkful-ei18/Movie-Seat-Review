@@ -1,6 +1,5 @@
 import React from 'react';
 import { reduxForm, Field } from 'redux-form';
-
 const validate = values => {
   const errors = {};
   if (!values.location) {

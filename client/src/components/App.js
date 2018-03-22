@@ -27,7 +27,6 @@ class App extends React.Component {
               path="/reviews"
               component={ReviewForm}
               onSubmit={this.onSubmit()}
-              å
             />
             <Route path="/reviews" component={Reviews} />
           </div>

@@ -6,6 +6,7 @@ const trSchema = new Schema({
   legroomRating: { type: Number, min: 1, max: 5 },
   screenRating: { type: Number, min: 1, max: 5 },
   summary: { type: String },
+  location: { type: String },
   reviewDate: Date,
 });
 
@@ -16,6 +17,7 @@ trSchema.methods.serialize = function() {
     comfortRating: this.comfortRating,
     legroomRating: this.legroomRating,
     screenRating: this.screenRating,
+    location: this.location,
     summary: this.summary,
   };
 };

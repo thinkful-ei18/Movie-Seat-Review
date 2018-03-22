@@ -7,19 +7,36 @@ class Reviews extends Component {
       reviews: [],
     };
   }
-  componentWillMount() {
+  componentDidMount() {
     fetch('/api/reviews')
       .then(results => results.json())
       .then(data => {
-        let reviews = data.results.map(review => {
-          return <div key={review.id}>{review}</div>;
+        data.map(review => {
+          this.setState({ reviews: [...this.state.reviews, review] });
         });
-        this.setState({ reviews: reviews });
       });
   }
 
   render() {
-    return <div>{this.state.reviews}</div>;
+    let reviews = this.state.reviews.map(review => {
+      return (
+        <li>
+          <div class="row">
+            <div class="col s12 m6">
+              <div class="card blue-grey darken-1">
+                <div class="card-content white-text">
+                  <span class="card-title">{review.location}</span>
+                  <ul>
+                    <li>{review.overallRating}</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+        </li>
+      );
+    });
+    return <ul>{reviews}</ul>;
   }
 }
 

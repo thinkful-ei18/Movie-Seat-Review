@@ -1,4 +1,5 @@
 // import 'materialize-css/dist/css/materialize.min.css';
+import './main.css';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
