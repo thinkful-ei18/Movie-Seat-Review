@@ -34,7 +34,7 @@ class App extends React.Component {
               exact={true}
               path="/"
               component={Reviews}
-              reviews={this.props.fetchReviews()}
+              reviews={this.props.fetchReviews}
             />
             <Route
               path="/reviews"
