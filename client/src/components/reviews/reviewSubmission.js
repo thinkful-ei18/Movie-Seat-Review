@@ -40,18 +40,18 @@ export class ReviewForm extends React.Component {
     return (
       <form onSubmit={this.props.handleSubmit(values => this.onSubmit(values))}>
         <div>
-          <label>Location</label> <br />
-          <Field name="location" component="input" type="text" />
+          <label>Product Name</label> <br />
+          <Field name="productName" component="input" type="text" />
         </div>
         <div>
           <label>Summary</label> <br />
           <Field name="summary" component="textarea" />
         </div>
         <div>
-          <label>Overall Rating</label>
+          <label>Rating</label>
           <br />
           <div>
-            <Field name="overallRating" component="select">
+            <Field name="rating" component="select">
               <option />
               <option value="1">1 Star</option>
               <option value="2">2 Star</option>
@@ -62,46 +62,9 @@ export class ReviewForm extends React.Component {
           </div>
         </div>
         <div>
-          <label>Screen Rating</label>
           <br />
-          <div>
-            <Field name="screenRating" component="select">
-              <option />
-              <option value="1">1 Star</option>
-              <option value="2">2 Star</option>
-              <option value="3">3 Star</option>
-              <option value="4">4 Star</option>
-              <option value="5">5 Star</option>
-            </Field>
-          </div>
-        </div>
-        <div>
-          <label>Legroom Rating</label>
-          <br />
-          <div>
-            <Field name="legroomRating" component="select">
-              <option />
-              <option value="1">1 Star</option>
-              <option value="2">2 Star</option>
-              <option value="3">3 Star</option>
-              <option value="4">4 Star</option>
-              <option value="5">5 Star</option>
-            </Field>
-          </div>
-        </div>
-        <div>
-          <label>Comfort Rating</label>
-          <br />
-          <div>
-            <Field name="comfortRating" component="select">
-              <option />
-              <option value="1">1 Star</option>
-              <option value="2">2 Star</option>
-              <option value="3">3 Star</option>
-              <option value="4">4 Star</option>
-              <option value="5">5 Star</option>
-            </Field>
-          </div>
+          <label>Image Url</label> <br />
+          <Field name="image" component="input" type="text" />
         </div>
         <div>
           <br />

@@ -1,27 +1,23 @@
 const mongoose = require('mongoose');
 const { Schema } = mongoose;
-const trSchema = new Schema({
-  overallRating: { type: Number, min: 1, max: 5 },
-  comfortRating: { type: Number, min: 1, max: 5 },
-  legroomRating: { type: Number, min: 1, max: 5 },
-  screenRating: { type: Number, min: 1, max: 5 },
+const rSchema = new Schema({
+  rating: { type: Number, min: 1, max: 5 },
   summary: { type: String },
-  location: { type: String },
+  productName: { type: String },
+  image: { type: String },
   reviewDate: Date,
 });
 
-trSchema.methods.serialize = function() {
+rSchema.methods.serialize = function() {
   return {
     id: this._id,
-    overallRating: this.overallRating,
-    comfortRating: this.comfortRating,
-    legroomRating: this.legroomRating,
-    screenRating: this.screenRating,
-    location: this.location,
+    rating: this.rating,
+    productName: this.productName,
+    image: this.image,
     summary: this.summary,
   };
 };
 
-const TheatreReview = mongoose.model('TheatreReview', trSchema);
+const Review = mongoose.model('Review', rSchema);
 
-module.exports = TheatreReview;
+module.exports = Review;

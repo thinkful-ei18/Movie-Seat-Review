@@ -11,7 +11,8 @@ import { FETCH_REVIEW } from './types';
 //   dispatch({ type: SUBMIT_REVIEW });
 // };
 
-export const fetchReview = () => async dispatch => {
-  const res = await axios.get('/api/reviews');
-  dispatch({ type: FETCH_REVIEW });
+export const fetchReview = () => dispatch => {
+  const res = axios
+    .get('/api/reviews')
+    .then(() => dispatch({ type: FETCH_REVIEW }));
 };

@@ -23,12 +23,12 @@ class App extends React.Component {
           <div>
             <Header />
             <Route exact={true} path="/" component={Home} />
+            <Route exact={true} path="/" component={Reviews} />
             <Route
               path="/reviews"
               component={ReviewForm}
               onSubmit={this.onSubmit()}
             />
-            <Route path="/reviews" component={Reviews} />
           </div>
         </BrowserRouter>
       </div>

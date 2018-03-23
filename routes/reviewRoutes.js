@@ -8,21 +8,12 @@ module.exports = app => {
   //review post request
   app.post('/api/reviews', (req, res, next) => {
     console.log('Endpoint hit');
-    const {
-      location,
-      overallRating,
-      legroomRating,
-      comfortRating,
-      screenRating,
-      summary,
-    } = req.body;
+    const { productName, rating, summary, image } = req.body;
 
     const newReview = {
-      location,
-      overallRating,
-      legroomRating,
-      comfortRating,
-      screenRating,
+      productName,
+      rating,
+      image,
       summary,
     };
 
