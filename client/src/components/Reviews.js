@@ -20,7 +20,7 @@ class Reviews extends Component {
   render() {
     const imgStyle = {
       height: '15%',
-      width: '15 %',
+      width: '15%',
     };
     let reviews = this.state.reviews.map(review => {
       return (
