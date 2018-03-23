@@ -1,40 +1,16 @@
 import React from 'react';
 import { reduxForm, Field } from 'redux-form';
-const validate = values => {
-  const errors = {};
-  if (!values.location) {
-    errors.location = 'Required';
-  }
-  if (!values.overallRating) {
-    errors.overallRating = 'Required';
-  }
-  return errors;
-};
 
 export class ReviewForm extends React.Component {
-  onSubmit(values) {
-    console.log(values);
-    return fetch('/api/reviews', {
-      method: 'POST',
-      body: JSON.stringify(values),
-      headers: {
-        'Content-Type': 'application/json',
-      },
-    }).then(res => {
-      if (!res.ok) {
-        if (
-          res.headers.has('content-type') &&
-          res.headers.get('content-type').startsWith('application/json')
-        ) {
-          return res.json().then(err => Promise.reject(err));
-        }
-        return Promise.reject({
-          code: res.status,
-          message: res.statusText,
-        });
-      }
-      return;
-    });
+  onSubmit(event) {
+    event.preventDefault();
+
+    if (this.props.onSubmit) {
+      const value = this.input.value;
+      this.props.onSubmit(value);
+    }
+    this.input.value = '';
+    this.input.focus();
   }
   render() {
     return (

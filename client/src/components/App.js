@@ -8,9 +8,16 @@ import Home from './Home';
 import ReviewForm from './reviews/reviewSubmission';
 import Reviews from './Reviews';
 
+// connect(store => {
+//   return {
+//     review: store.review,
+//     reviews: store.reviews,
+//     fetched: store.fetched,
+//   };
+// });
 class App extends React.Component {
-  componentDidMount() {
-    // this.props.fetchUser();
+  componentWillMount() {
+    this.props.fetchReview();
   }
 
   onSubmit = fields => {
@@ -23,11 +30,18 @@ class App extends React.Component {
           <div>
             <Header />
             <Route exact={true} path="/" component={Home} />
-            <Route exact={true} path="/" component={Reviews} />
+            <Route
+              exact={true}
+              path="/"
+              component={Reviews}
+              reviews={this.props.fetchReviews()}
+            />
             <Route
               path="/reviews"
               component={ReviewForm}
-              onSubmit={this.onSubmit()}
+              onSubmit={value =>
+                this.props.dispatch(actions.submitReview(value))
+              }
             />
           </div>
         </BrowserRouter>
