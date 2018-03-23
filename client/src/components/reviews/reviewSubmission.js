@@ -51,6 +51,14 @@ export class ReviewForm extends React.Component {
   }
 }
 
+ReviewForm.defaultProps = {
+  review: [],
+};
+
+const mapStateToProps = state => ({
+  review: state.review,
+});
+
 export default reduxForm({
   form: 'review',
 })(ReviewForm);
