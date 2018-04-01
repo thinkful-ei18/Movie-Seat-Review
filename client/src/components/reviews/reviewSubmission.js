@@ -1,46 +1,57 @@
 import React from 'react';
-import { reduxForm, Field } from 'redux-form';
 
-export class ReviewForm extends React.Component {
+export default class ReviewForm extends React.Component {
   onSubmit(event) {
     event.preventDefault();
 
     if (this.props.onSubmit) {
-      const value = this.input.value;
-      this.props.onSubmit(value);
+      const newReview = {
+        productName: this.productName,
+        summary: this.summary,
+        rating: this.rating,
+        image: this.image,
+      };
+      this.props.onSubmit(newReview);
     }
-    this.input.value = '';
+    this.productName = '';
+    this.summary = '';
+    this.rating = '';
+    this.image = '';
     this.input.focus();
   }
+
   render() {
     return (
-      <form onSubmit={this.props.handleSubmit(values => this.onSubmit(values))}>
+      <form onSubmit={e => this.onSubmit(e)}>
         <div>
           <label>Product Name</label> <br />
-          <Field name="productName" component="input" type="text" />
+          <input
+            ref={productName => (this.productName = this.productName)}
+            type="text"
+          />
         </div>
         <div>
           <label>Summary</label> <br />
-          <Field name="summary" component="textarea" />
+          <input ref={summary => (this.summary = summary)} type="textarea" />
         </div>
         <div>
           <label>Rating</label>
           <br />
           <div>
-            <Field name="rating" component="select">
+            <input ref={rating => (this.rating = rating)} type="select">
               <option />
               <option value="1">1 Star</option>
               <option value="2">2 Star</option>
               <option value="3">3 Star</option>
               <option value="4">4 Star</option>
               <option value="5">5 Star</option>
-            </Field>
+            </input>
           </div>
         </div>
         <div>
           <br />
           <label>Image Url</label> <br />
-          <Field name="image" component="input" type="text" />
+          <input ref={image => (this.image = image)} type="text" />
         </div>
         <div>
           <br />
@@ -50,15 +61,3 @@ export class ReviewForm extends React.Component {
     );
   }
 }
-
-ReviewForm.defaultProps = {
-  review: [],
-};
-
-const mapStateToProps = state => ({
-  review: state.review,
-});
-
-export default reduxForm({
-  form: 'review',
-})(ReviewForm);

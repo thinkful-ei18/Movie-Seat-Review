@@ -15,39 +15,35 @@ import Reviews from './Reviews';
 //     fetched: store.fetched,
 //   };
 // });
-class App extends React.Component {
-  componentWillMount() {
-    this.props.fetchReview();
-  }
-
-  onSubmit = fields => {
+export function App(props) {
+  const onSubmit = fields => {
     console.log(fields);
   };
-  render() {
-    return (
-      <div className="container">
-        <BrowserRouter>
-          <div>
-            <Header />
-            <Route exact={true} path="/" component={Home} />
-            <Route
-              exact={true}
-              path="/"
-              component={Reviews}
-              reviews={this.props.fetchReviews}
-            />
-            <Route
-              path="/reviews"
-              component={ReviewForm}
-              onSubmit={value =>
-                this.props.dispatch(actions.submitReview(value))
-              }
-            />
-          </div>
-        </BrowserRouter>
-      </div>
-    );
-  }
+  return (
+    <div className="container">
+      <BrowserRouter>
+        <div>
+          <Header />
+          <Route exact path="/" component={Home} />
+          <Route
+            exact
+            path="/"
+            component={Reviews}
+            reviews={props.dispatch(actions.fetchReview())}
+          />
+          <Route
+            path="/reviews"
+            component={ReviewForm}
+            onSubmit={value => props.dispatch(actions.submitReview(value))}
+          />
+        </div>
+      </BrowserRouter>
+    </div>
+  );
 }
 
-export default connect(null, actions)(App);
+export const mapStateToProps = state => ({
+  review: state.review,
+});
+
+export default connect(mapStateToProps)(App);

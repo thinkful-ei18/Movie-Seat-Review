@@ -4,10 +4,7 @@ import { combineReducers, createStore, applyMiddleware } from 'redux';
 import thunk from 'redux-thunk';
 
 const initialState = {
-  fetching: false,
-  fetched: false,
-  reviews: [],
-  review: [],
+  reviews: {},
 };
 
 const reducers = combineReducers({
@@ -32,8 +29,6 @@ const formsReducer = (state = initialState, action) => {
     case FETCH_REVIEW: {
       state = {
         ...state,
-        fetching: false,
-        fetched: true,
         review: action.payload,
       };
       break;

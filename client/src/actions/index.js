@@ -5,7 +5,6 @@ import axios from 'axios';
 //   dispatch({ type: FETCH_USER, payload: res.data });
 // };
 export const SUBMIT_REVIEW = 'SUBMIT_REVIEW';
-
 export const submitReview = () => dispatch => {
   axios.post('/api/reviews').then(() => dispatch({ type: SUBMIT_REVIEW }));
 };

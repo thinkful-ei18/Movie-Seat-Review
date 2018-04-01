@@ -19,7 +19,7 @@ export default function Reviews(props) {
     width: '15%',
   };
   console.log(props.review);
-  const reviewss = props.review.map((review, index) => {
+  const reviews = props.reviews.map((review, index) => {
     return (
       <li key={index}>
         <div class="row">
@@ -37,5 +37,5 @@ export default function Reviews(props) {
       </li>
     );
   });
-  return <ul>{reviewss}</ul>;
+  return <ul>{reviews}</ul>;
 }
