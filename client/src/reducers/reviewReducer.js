@@ -4,18 +4,14 @@ import { combineReducers, createStore, applyMiddleware } from 'redux';
 import thunk from 'redux-thunk';
 
 const initialState = {
-  reviews: {},
+  items: [],
+  item: {},
 };
 
-const reducers = combineReducers({
-  form: formsReducer,
-  review: reviewsReducer,
-});
-
-const reviewsReducer = (state = initialState, action) => {
+const formsReducer = (state = initialState, action) => {
   switch (action.type) {
     case SUBMIT_REVIEW: {
-      state = { ...state, review: action.payload };
+      state = { ...state, item: action.payload };
       break;
     }
     default: {
@@ -24,21 +20,25 @@ const reviewsReducer = (state = initialState, action) => {
   }
   return state;
 };
-const formsReducer = (state = initialState, action) => {
+const reviewsReducer = (state = initialState, action) => {
   switch (action.type) {
-    case FETCH_REVIEW: {
-      state = {
+    case FETCH_REVIEW:
+      console.log('reducer fetching');
+      return {
         ...state,
-        review: action.payload,
+        items: action.payload,
       };
-      break;
-    }
     default: {
       return state;
     }
   }
 };
 
+const reducers = combineReducers({
+  form: formsReducer,
+  reviews: reviewsReducer,
+});
+
 const middleware = applyMiddleware(thunk);
 
-export default createStore(reducers, middleware);
+export default createStore(reducers, initialState, middleware);

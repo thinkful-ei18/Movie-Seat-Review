@@ -1,57 +1,61 @@
 import React from 'react';
-
-export default class ReviewForm extends React.Component {
-  onSubmit(event) {
-    event.preventDefault();
-
-    if (this.props.onSubmit) {
-      const newReview = {
-        productName: this.productName,
-        summary: this.summary,
-        rating: this.rating,
-        image: this.image,
-      };
-      this.props.onSubmit(newReview);
-    }
-    this.productName = '';
-    this.summary = '';
-    this.rating = '';
-    this.image = '';
-    this.input.focus();
+import { connect } from 'react-redux';
+import { submitReview } from '../../actions/index';
+class ReviewForm extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      productName: '',
+      summary: '',
+      rating: '',
+      image: '',
+    };
+    this.onChange = this.onChange.bind(this);
+    this.onSubmit = this.onSubmit.bind(this);
+  }
+  onChange(e) {
+    this.setState({ [e.target.name]: e.target.value });
+  }
+  onSubmit(e) {
+    e.preventDefault();
+    const review = {
+      productName: this.state.productName,
+      summary: this.state.summary,
+      rating: this.state.rating,
+      image: this.state.image,
+    };
+    this.props.submitReview(review);
   }
 
   render() {
     return (
-      <form onSubmit={e => this.onSubmit(e)}>
+      <form onSubmit={this.onSubmit}>
         <div>
           <label>Product Name</label> <br />
-          <input
-            ref={productName => (this.productName = this.productName)}
-            type="text"
-          />
+          <input name="productName" type="text" onChange={this.onChange} />
         </div>
         <div>
           <label>Summary</label> <br />
-          <input ref={summary => (this.summary = summary)} type="textarea" />
+          <input name="summary" type="textarea" onChange={this.onChange} />
         </div>
         <div>
           <label>Rating</label>
           <br />
           <div>
-            <input ref={rating => (this.rating = rating)} type="select">
+            <select name="rating" onChange={this.onChange}>
               <option />
               <option value="1">1 Star</option>
               <option value="2">2 Star</option>
               <option value="3">3 Star</option>
               <option value="4">4 Star</option>
               <option value="5">5 Star</option>
-            </input>
+            </select>
           </div>
         </div>
         <div>
           <br />
           <label>Image Url</label> <br />
-          <input ref={image => (this.image = image)} type="text" />
+          <input name="image" type="text" onChange={this.onChange} />
         </div>
         <div>
           <br />
@@ -61,3 +65,9 @@ export default class ReviewForm extends React.Component {
     );
   }
 }
+
+const mapStateToProps = state => ({
+  newReview: state.form.item,
+});
+
+export default connect(mapStateToProps, { submitReview })(ReviewForm);

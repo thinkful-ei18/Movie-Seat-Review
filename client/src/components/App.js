@@ -1,8 +1,5 @@
 import React from 'react';
 import { BrowserRouter, Route } from 'react-router-dom';
-import { connect } from 'react-redux';
-import * as actions from '../actions';
-
 import Header from './Header';
 import Home from './Home';
 import ReviewForm from './reviews/reviewSubmission';
@@ -15,35 +12,28 @@ import Reviews from './Reviews';
 //     fetched: store.fetched,
 //   };
 // });
-export function App(props) {
-  const onSubmit = fields => {
-    console.log(fields);
-  };
+export default function App(props) {
   return (
     <div className="container">
       <BrowserRouter>
         <div>
           <Header />
           <Route exact path="/" component={Home} />
-          <Route
-            exact
-            path="/"
-            component={Reviews}
-            reviews={props.dispatch(actions.fetchReview())}
-          />
-          <Route
-            path="/reviews"
-            component={ReviewForm}
-            onSubmit={value => props.dispatch(actions.submitReview(value))}
-          />
+          <Route exact path="/" component={Reviews} />
+          <Route path="/reviews" component={ReviewForm} />
         </div>
       </BrowserRouter>
     </div>
   );
 }
 
-export const mapStateToProps = state => ({
-  review: state.review,
-});
+// const mapStateToProps = state => ({
+//   review: state.review,
+// });
 
-export default connect(mapStateToProps)(App);
+// const mapDispatchToProps = dispatch => ({
+//   submitReview: value => dispatch(actions.submitReview(value)),
+//   fetchReview: () => dispatch(actions.fetchReview()),
+// });
+
+// export default connect(mapStateToProps, mapDispatchToProps)(App);
