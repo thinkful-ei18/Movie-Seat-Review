@@ -6,7 +6,7 @@ const User = require('../models/user');
 const Review = require('../models/reviews');
 module.exports = app => {
   //review post request
-  app.post('/api/reviews', (req, res, next) => {
+  app.post('/api/reviews/post', (req, res, next) => {
     console.log('Endpoint hit');
     const { productName, rating, summary, image } = req.body;
 

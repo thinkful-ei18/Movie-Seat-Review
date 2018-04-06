@@ -1,30 +1,20 @@
 import React, { Component } from 'react';
-
+import { connect } from 'react-redux';
+import { fetchReview } from '../actions/index';
 class Reviews extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      reviews: [],
-    };
+  componentWillMount() {
+    this.props.fetchReview();
   }
-  componentDidMount() {
-    fetch('/api/reviews')
-      .then(results => results.json())
-      .then(data => {
-        data.map(review => {
-          this.setState({ reviews: [...this.state.reviews, review] });
-        });
-      });
-  }
-
   render() {
     const imgStyle = {
       height: '15%',
       width: '15%',
     };
-    let reviews = this.state.reviews.map(review => {
+    const reviewArray = this.props.reviews.data;
+    console.log(reviewArray);
+    const reviews = this.props.reviews.map(review => {
       return (
-        <li>
+        <li key={review.id}>
           <div class="row">
             <div class="col s12 m6">
               <div class="card blue-grey darken-1">
@@ -44,4 +34,12 @@ class Reviews extends Component {
   }
 }
 
-export default Reviews;
+// Reviews.propTypes = {
+//   fetchReview: propTypes.func.isRequired,
+//   reviews: propTypes.array.isRequired,
+// };
+const mapStateToProps = state => ({
+  reviews: state.reviews.items,
+});
+
+export default connect(mapStateToProps, { fetchReview })(Reviews);

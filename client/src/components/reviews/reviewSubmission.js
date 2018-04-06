@@ -1,70 +1,61 @@
 import React from 'react';
-import { reduxForm, Field } from 'redux-form';
-const validate = values => {
-  const errors = {};
-  if (!values.location) {
-    errors.location = 'Required';
+import { connect } from 'react-redux';
+import { submitReview } from '../../actions/index';
+class ReviewForm extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      productName: '',
+      summary: '',
+      rating: '',
+      image: '',
+    };
+    this.onChange = this.onChange.bind(this);
+    this.onSubmit = this.onSubmit.bind(this);
   }
-  if (!values.overallRating) {
-    errors.overallRating = 'Required';
+  onChange(e) {
+    this.setState({ [e.target.name]: e.target.value });
   }
-  return errors;
-};
+  onSubmit(e) {
+    e.preventDefault();
+    const review = {
+      productName: this.state.productName,
+      summary: this.state.summary,
+      rating: this.state.rating,
+      image: this.state.image,
+    };
+    this.props.submitReview(review);
+  }
 
-export class ReviewForm extends React.Component {
-  onSubmit(values) {
-    console.log(values);
-    return fetch('/api/reviews', {
-      method: 'POST',
-      body: JSON.stringify(values),
-      headers: {
-        'Content-Type': 'application/json',
-      },
-    }).then(res => {
-      if (!res.ok) {
-        if (
-          res.headers.has('content-type') &&
-          res.headers.get('content-type').startsWith('application/json')
-        ) {
-          return res.json().then(err => Promise.reject(err));
-        }
-        return Promise.reject({
-          code: res.status,
-          message: res.statusText,
-        });
-      }
-      return;
-    });
-  }
   render() {
     return (
-      <form onSubmit={this.props.handleSubmit(values => this.onSubmit(values))}>
+      <form onSubmit={this.onSubmit}>
         <div>
           <label>Product Name</label> <br />
-          <Field name="productName" component="input" type="text" />
+          <input name="productName" type="text" onChange={this.onChange} />
         </div>
         <div>
           <label>Summary</label> <br />
-          <Field name="summary" component="textarea" />
+          <input name="summary" type="textarea" onChange={this.onChange} />
         </div>
         <div>
           <label>Rating</label>
           <br />
           <div>
-            <Field name="rating" component="select">
+            <select name="rating" onChange={this.onChange}>
               <option />
               <option value="1">1 Star</option>
               <option value="2">2 Star</option>
               <option value="3">3 Star</option>
               <option value="4">4 Star</option>
               <option value="5">5 Star</option>
-            </Field>
+            </select>
           </div>
         </div>
         <div>
           <br />
           <label>Image Url</label> <br />
-          <Field name="image" component="input" type="text" />
+          <input name="image" type="text" onChange={this.onChange} />
         </div>
         <div>
           <br />
@@ -75,6 +66,8 @@ export class ReviewForm extends React.Component {
   }
 }
 
-export default reduxForm({
-  form: 'review',
-})(ReviewForm);
+const mapStateToProps = state => ({
+  form: state.form.item,
+});
+
+export default connect(mapStateToProps, { submitReview })(ReviewForm);
