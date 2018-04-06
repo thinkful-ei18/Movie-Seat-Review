@@ -1,4 +1,3 @@
-import axios from 'axios';
 
 // export const fetchUser = () => async dispatch => {
 //   const res = await axios.get('/api/current_user');
@@ -7,7 +6,7 @@ import axios from 'axios';
 export const SUBMIT_REVIEW = 'SUBMIT_REVIEW';
 export const submitReview = submitData => dispatch => {
   console.log('post action called');
-  fetch('api/reviews', {
+  fetch('api/reviews/post', {
     method: 'POST',
     headers: { 'content-type': 'application/json' },
     body: JSON.stringify(submitData),

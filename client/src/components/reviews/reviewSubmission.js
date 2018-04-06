@@ -67,7 +67,7 @@ class ReviewForm extends React.Component {
 }
 
 const mapStateToProps = state => ({
-  newReview: state.form.item,
+  form: state.form.item,
 });
 
 export default connect(mapStateToProps, { submitReview })(ReviewForm);
