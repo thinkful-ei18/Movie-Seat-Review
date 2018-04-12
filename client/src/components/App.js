@@ -14,7 +14,7 @@ import Reviews from './Reviews';
 // });
 export default function App(props) {
   return (
-    <div className="container">
+    <div className="">
       <BrowserRouter>
         <div>
           <Header />

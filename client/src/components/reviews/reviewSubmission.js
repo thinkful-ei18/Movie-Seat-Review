@@ -9,6 +9,7 @@ class ReviewForm extends React.Component {
       summary: '',
       rating: '',
       image: '',
+      visible: 'none',
     };
     this.onChange = this.onChange.bind(this);
     this.onSubmit = this.onSubmit.bind(this);
@@ -25,6 +26,10 @@ class ReviewForm extends React.Component {
       image: this.state.image,
     };
     this.props.submitReview(review);
+    this.setState.productName = '';
+    this.setState.summary = '';
+    this.setState.rating = '';
+    this.setState.image = '';
   }
 
   render() {
@@ -36,7 +41,7 @@ class ReviewForm extends React.Component {
         </div>
         <div>
           <label>Summary</label> <br />
-          <input name="summary" type="textarea" onChange={this.onChange} />
+          <textarea name="summary" onChange={this.onChange} />
         </div>
         <div>
           <label>Rating</label>

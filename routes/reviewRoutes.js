@@ -27,10 +27,8 @@ module.exports = app => {
           .json(result);
       })
       .catch(err => {
-        console.log('I just got here');
-        next(err);
+        res.status(500).json(err);
       });
-    next();
   });
 
   //get all reviews
