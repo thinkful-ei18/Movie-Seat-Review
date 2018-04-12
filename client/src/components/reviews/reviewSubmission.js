@@ -36,7 +36,7 @@ class ReviewForm extends React.Component {
         </div>
         <div>
           <label>Summary</label> <br />
-          <input name="summary" type="textarea" onChange={this.onChange} />
+          <textarea name="summary" type="textarea" onChange={this.onChange} />
         </div>
         <div>
           <label>Rating</label>
