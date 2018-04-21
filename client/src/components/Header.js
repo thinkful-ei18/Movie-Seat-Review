@@ -28,14 +28,12 @@ class Header extends Component {
     return (
       <nav>
         <div className="nav-wrapper">
-          <a href="/" className="brand-logo">
+          <a className="header-capname" href="/">
             Product Reviewer
           </a>
-          <ul id="nav-mobile" className="right hide-on-med-and-down">
-            <li>
-              <a href="reviews">Submit Review</a>
-            </li>
-          </ul>
+          <a href="reviews" className="header-reviews">
+            Submit Review
+          </a>
         </div>
       </nav>
     );

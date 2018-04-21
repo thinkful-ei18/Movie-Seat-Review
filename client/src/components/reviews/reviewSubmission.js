@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { submitReview } from '../../actions/index';
+
 class ReviewForm extends React.Component {
   constructor(props) {
     super(props);
@@ -26,13 +27,21 @@ class ReviewForm extends React.Component {
     };
     this.props.submitReview(review);
   }
+  required(value) {
+    value ? undefined : 'Required';
+  }
 
   render() {
     return (
       <form onSubmit={this.onSubmit}>
         <div>
           <label>Product Name</label> <br />
-          <input name="productName" type="text" onChange={this.onChange} />
+          <input
+            name="productName"
+            type="text"
+            onChange={this.onChange}
+            validate={this.required}
+          />
         </div>
         <div>
           <label>Summary</label> <br />
