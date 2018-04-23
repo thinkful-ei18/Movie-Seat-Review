@@ -66,3 +66,25 @@ a {
   margin: 10px;
   font-size: 15px;
 }
+
+.reviewsub-container {
+  background-color: crimson;
+  padding: 10px;
+  margin: 10px;
+  color: white;
+  top: 50%;
+}
+
+.reviewsub-textarea {
+  width: 100%;
+  height: 100px;
+  background: white;
+}
+
+.img-url {
+  width: 100%;
+}
+
+.product-name {
+  width: 100%;
+}

@@ -1,9 +1,9 @@
 const mongoose = require('mongoose');
 const { Schema } = mongoose;
 const rSchema = new Schema({
-  rating: { type: Number, min: 1, max: 5 },
+  rating: { type: Number, min: 1, max: 5, required: true },
   summary: { type: String },
-  productName: { type: String },
+  productName: { type: String, required: true },
   image: { type: String },
   reviewDate: Date,
 });

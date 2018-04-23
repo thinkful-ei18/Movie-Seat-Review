@@ -1,7 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { submitReview } from '../../actions/index';
-
 class ReviewForm extends React.Component {
   constructor(props) {
     super(props);
@@ -26,6 +25,7 @@ class ReviewForm extends React.Component {
       image: this.state.image,
     };
     this.props.submitReview(review);
+    return <div>Your Review has been submitted</div>;
   }
   required(value) {
     value ? undefined : 'Required';
@@ -33,25 +33,33 @@ class ReviewForm extends React.Component {
 
   render() {
     return (
-      <form onSubmit={this.onSubmit}>
+      <form className="reviewsub-container" onSubmit={this.onSubmit}>
         <div>
           <label>Product Name</label> <br />
           <input
+            className="product-name"
             name="productName"
             type="text"
             onChange={this.onChange}
             validate={this.required}
+            required
           />
         </div>
         <div>
           <label>Summary</label> <br />
-          <textarea name="summary" type="textarea" onChange={this.onChange} />
+          <textarea
+            className="reviewsub-textarea"
+            name="summary"
+            type="textarea"
+            onChange={this.onChange}
+            required
+          />
         </div>
         <div>
           <label>Rating</label>
           <br />
           <div>
-            <select name="rating" onChange={this.onChange}>
+            <select name="rating" onChange={this.onChange} required>
               <option />
               <option value="1">1 Star</option>
               <option value="2">2 Star</option>
@@ -64,7 +72,12 @@ class ReviewForm extends React.Component {
         <div>
           <br />
           <label>Image Url</label> <br />
-          <input name="image" type="text" onChange={this.onChange} />
+          <input
+            className="img-url"
+            name="image"
+            type="text"
+            onChange={this.onChange}
+          />
         </div>
         <div>
           <br />
