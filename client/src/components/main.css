@@ -4,8 +4,7 @@
 }
 
 body {
-	background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, .5)),
-		url('https://images.unsplash.com/photo-1509412973567-e447abf679d4?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=016ff390f050e9ab9ebc6b04d193a002&auto=format&fit=crop&w=1950&q=80');
+	background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, .5)), url('../neon.jpeg');
 }
 
 nav {
