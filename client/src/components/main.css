@@ -1,90 +1,145 @@
 * {
-  margin: 0px;
-  padding: 0px;
+	margin: 0px;
+	padding: 0px;
 }
 
 body {
-  background-color: rgba(255, 255, 255, 0.219);
+	background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, .5)),
+		url('https://images.unsplash.com/photo-1509412973567-e447abf679d4?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=016ff390f050e9ab9ebc6b04d193a002&auto=format&fit=crop&w=1950&q=80');
 }
 
 nav {
-  height: 40px;
-  width: 100%;
-  background-color: midnightblue;
+	height: 40px;
+	width: 100%;
+	background-color: rgba(25, 25, 112, 0.884);
 }
 
 li {
-  list-style: none;
+	list-style: none;
 }
 
 a {
-  text-decoration: none;
-  color: rgb(255, 255, 255);
+	text-decoration: none;
+	color: rgb(255, 255, 255);
 }
-
+.started {
+	background: rgba(245, 245, 245, .1);
+	padding: 10px;
+}
+a:hover {
+	text-decoration: none;
+	color: white;
+	-webkit-border-radius: 10px;
+	-moz-border-radius: 10px;
+	-webkit-box-shadow: 0px 0px 30px 0px rgba(208, 216, 226, 0.67);
+	-moz-box-shadow: 0px 0px 30px 0px rgba(208, 216, 226, 0.67);
+	box-shadow: 0px 0px 30px 0px rgba(208, 216, 226, 0.67);
+}
 .header-reviews {
-  float: right;
-  position: relative;
-  font-size: 20px;
-  top: 3px;
-  margin: 5px;
+	float: right;
+	position: relative;
+	font-size: 20px;
+	top: 3px;
+	margin: 5px;
 }
 
 .header-capname {
-  float: left;
-  position: relative;
-  font-size: 20px;
-  top: 3px;
-  margin: 5px;
+	float: left;
+	position: relative;
+	font-size: 20px;
+	top: 3px;
+	margin: 5px;
 }
 
 .card {
-  background: crimson;
-  height: 350px;
-  width: 350px;
-  color: white;
-  padding: 20px;
-  position: relative;
-  top: 20px;
-  left: 20px;
-  display: inline-block;
-  margin: 10px;
-  float: left;
+	background: linear-gradient(rgba(220, 20, 60, 0.945), rgba(220, 20, 60, 0.644));
+	height: 350px;
+	width: 350px;
+	color: white;
+	padding: 20px;
+	position: relative;
+	top: 20px;
+	left: 20px;
+	display: inline-block;
+	margin: 10px;
+	float: left;
 }
 
-.card>span {
-  font-size: 20px;
+.card > span {
+	font-size: 20px;
 }
 
-.card>img {
-  display: block;
-  height: 40px;
-  width: 40px;
+.card > img {
+	display: block;
+	height: 40px;
+	width: 40px;
+}
+.landing-center {
+	position: relative;
+	top: 30px;
 }
 
-.card>p {
-  margin: 10px;
-  font-size: 15px;
+.card > p {
+	margin: 10px;
+	font-size: 15px;
 }
 
 .reviewsub-container {
-  background-color: crimson;
-  padding: 10px;
-  margin: 10px;
-  color: white;
-  top: 50%;
+	color: white;
+	background: linear-gradient(rgba(220, 20, 60, 0.945), rgba(220, 20, 60, 0.644));
+	position: absolute;
+	top: 400px;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	width: 500px;
+	height: 600px;
+	padding: 80px 40px;
+	box-sizing: border-box;
+}
+.landing-container {
+	color: white;
+	background: linear-gradient(rgba(220, 20, 60, 0.945), rgba(220, 20, 60, 0.644));
+	position: absolute;
+	top: 300px;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	width: 350px;
+	height: 420px;
+	padding: 80px 40px;
+	box-sizing: border-box;
 }
 
 .reviewsub-textarea {
-  width: 100%;
-  height: 100px;
-  background: white;
+	width: 100%;
+	height: 100px;
+	color: white;
+	background-color: rgba(245, 245, 245, 0.5);
+	border: none;
 }
 
 .img-url {
-  width: 100%;
+	width: 100%;
 }
 
 .product-name {
-  width: 100%;
+	width: 100%;
+}
+button {
+	border: none;
+	background: rgba(245, 245, 245, .4);
+	padding: 10px;
+}
+input {
+	height: 30px;
+	color: white;
+	background-color: rgba(245, 245, 245, 0.5);
+	border: none;
+}
+
+select {
+	width: 100%;
+	height: 30px;
+	color: white;
+	background-color: rgba(245, 245, 245, 0.5);
+	border: none;
 }

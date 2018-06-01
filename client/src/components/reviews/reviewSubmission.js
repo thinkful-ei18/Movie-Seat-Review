@@ -25,15 +25,20 @@ class ReviewForm extends React.Component {
       image: this.state.image,
     };
     this.props.submitReview(review);
-    return <div>Your Review has been submitted</div>;
   }
   required(value) {
     value ? undefined : 'Required';
   }
 
   render() {
+    console.log(this.props.form.submitted);
+    const reviewSubmit =
+      this.props.form.submitted !== false
+        ? 'Your review has been submitted'
+        : undefined;
     return (
       <form className="reviewsub-container" onSubmit={this.onSubmit}>
+        <h3>{reviewSubmit}</h3>
         <div>
           <label>Product Name</label> <br />
           <input
@@ -89,7 +94,7 @@ class ReviewForm extends React.Component {
 }
 
 const mapStateToProps = state => ({
-  form: state.form.item,
+  form: state.form,
 });
 
 export default connect(mapStateToProps, { submitReview })(ReviewForm);
