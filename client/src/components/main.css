@@ -94,6 +94,7 @@ a:hover {
 	height: 600px;
 	padding: 80px 40px;
 	box-sizing: border-box;
+	margin-bottom: 50px;
 }
 .landing-container {
 	color: white;
