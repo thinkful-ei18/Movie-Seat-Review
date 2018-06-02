@@ -90,7 +90,6 @@ a:hover {
 	top: 400px;
 	left: 50%;
 	transform: translate(-50%, -50%);
-	width: 500px;
 	height: 600px;
 	padding: 80px 40px;
 	box-sizing: border-box;
@@ -102,7 +101,6 @@ a:hover {
 	top: 300px;
 	left: 50%;
 	transform: translate(-50%, -50%);
-	width: 350px;
 	height: 420px;
 	padding: 80px 40px;
 	box-sizing: border-box;
@@ -141,4 +139,20 @@ select {
 	color: white;
 	background-color: rgba(245, 245, 245, 0.5);
 	border: none;
+}
+@media only screen and (min-width: 550px) {
+	.reviewsub-container {
+		width: 550px;
+	}
+}
+@media only screen and (max-width: 549px) {
+	.reviewsub-container {
+		width: 450px;
+	}
+}
+
+@media only screen and (max-width: 475px) {
+	.reviewsub-container {
+		width: 350px;
+	}
 }
